@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.account.pojo.UserMapper">
+    <select id="selectAll" resultType="com.account.pojo.User">
+        select * from t_account;
+    </select>
+    <select id="selectcompetence" resultType="int">
+        select competence from t_account where account = #{account};
+    </select>
+    <select id="selectByAccount" parameterType="String" resultType="com.account.pojo.User">
+        SELECT * FROM t_account WHERE account = #{account}
+    </select>
+    <insert id="insertUser" parameterType="com.account.pojo.User">
+        INSERT INTO t_account (id, account, password, competence, dormitory)
+        VALUES (#{id}, #{account}, #{password}, #{competence}, #{dormitory})
+    </insert>
+    <update id="updateDormitory" parameterType="com.account.pojo.User">
+        UPDATE t_account SET dormitory = #{dormitory} WHERE account = #{account}
+    </update>
+    <update id="updatePassword" parameterType="com.account.pojo.User">
+        UPDATE t_account SET password = #{password} WHERE account = #{account}
+    </update>
+    <insert id="insertMaintain" parameterType="com.account.pojo.Maintain">
+        INSERT INTO t_maintain (id, content, dormitory, status, updateUser)
+        VALUES (#{id}, #{content}, #{dormitory}, #{status}, #{updateUser})
+    </insert>
+</mapper>
